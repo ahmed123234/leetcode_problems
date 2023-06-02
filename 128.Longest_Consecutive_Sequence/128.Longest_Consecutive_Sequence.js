@@ -31,3 +31,33 @@ var longestConsecutive = function(nums) {
 
     return max;
 };
+
+
+// Using sorting
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var longestConsecutive = function(nums) {
+    let max = 0;
+    let count = 1;
+    let n = nums.length;
+
+    nums.sort((a, b) => b - a);
+
+    if (n == 0) return 0;
+
+    for (let i = 0; i < n - 1; i++) {
+        if(nums[i + 1] !== nums[i]) {
+            if (nums[i + 1] === nums[i] - 1) {
+                count ++;
+                
+            } else {
+                max = Math.max(max, count);
+                count = 1;
+            }
+        }
+    } 
+
+    return Math.max(max, count);
+};
